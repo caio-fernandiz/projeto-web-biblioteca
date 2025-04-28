@@ -8,7 +8,7 @@ import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormUpdateDTO;
 @Component
 public class BookUpdater {
 
-    public void updateBookDetails(Book book, BookFormUpdateDTO bookFormUpdateDTO) {
+    public void updateBook(Book book, BookFormUpdateDTO bookFormUpdateDTO) {
         if (bookFormUpdateDTO.title() != null)
             book.setTitle(bookFormUpdateDTO.title());
 

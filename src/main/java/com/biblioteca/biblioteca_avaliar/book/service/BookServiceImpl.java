@@ -28,8 +28,9 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDTO updateBook(Long id, BookFormUpdateDTO form) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateBook'");
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        bookUpdater.updateBook(book, form);
+        return new BookDTO(bookRepository.save(book));
     }
 
     @Override
