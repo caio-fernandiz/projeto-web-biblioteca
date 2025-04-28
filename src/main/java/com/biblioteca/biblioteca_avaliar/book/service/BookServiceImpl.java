@@ -2,16 +2,28 @@ package com.biblioteca.biblioteca_avaliar.book.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.biblioteca.biblioteca_avaliar.book.Book;
+import com.biblioteca.biblioteca_avaliar.book.BookRepository;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookDTO;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormDTO;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormUpdateDTO;
 
 public class BookServiceImpl implements BookService{
+    private final BookRepository bookRepository;
+    private final BookUpdater bookUpdater;
+
+    @Autowired
+    public BookServiceImpl(BookRepository bookRepository, BookUpdater bookUpdater) {
+        this.bookRepository = bookRepository;
+        this.bookUpdater = bookUpdater;
+    }
 
     @Override
     public BookDTO saveBook(BookFormDTO form) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveBook'");
+        Book book = form.toEntity();
+        return new BookDTO(bookRepository.save(book));
     }
 
     @Override

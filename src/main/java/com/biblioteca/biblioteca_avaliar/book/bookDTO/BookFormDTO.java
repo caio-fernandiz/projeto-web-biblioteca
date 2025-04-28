@@ -1,8 +1,10 @@
 package com.biblioteca.biblioteca_avaliar.book.bookDTO;
 
+import com.biblioteca.biblioteca_avaliar.book.Book;
+
 public record BookFormDTO(String title, String author, String synopsis, String releaseDate, String publisher) {
     
-    public BookFormDTO toEntity() {
-        return new BookFormDTO(null, title, author, synopsis, releaseDate);
+    public Book toEntity(){
+        return new Book(null, title, author, synopsis, releaseDate, publisher);
     }
 }
