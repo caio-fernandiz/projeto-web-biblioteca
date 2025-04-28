@@ -9,6 +9,9 @@ import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormUpdateDTO;
 public class BookUpdater {
 
     public void updateBook(Book book, BookFormUpdateDTO bookFormUpdateDTO) {
+        if (bookFormUpdateDTO.isbn() != null)
+            book.setIsbn(bookFormUpdateDTO.isbn());
+
         if (bookFormUpdateDTO.title() != null)
             book.setTitle(bookFormUpdateDTO.title());
 

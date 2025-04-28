@@ -46,6 +46,12 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
+    public BookDTO findBookByIsbn(String isbn) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findBookByIsbn'");
+    }
+
+    @Override
     public BookDTO findBookByTitle(String title) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findBookByTitle'");
@@ -68,5 +74,7 @@ public class BookServiceImpl implements BookService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteBook'");
     }
+
+
 
 }
