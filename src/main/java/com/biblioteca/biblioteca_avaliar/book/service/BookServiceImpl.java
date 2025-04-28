@@ -1,6 +1,7 @@
 package com.biblioteca.biblioteca_avaliar.book.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,8 +36,7 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<BookDTO> showAllBooks() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showAllBooks'");
+        return bookRepository.findAll().stream().map(BookDTO::new).collect(Collectors.toList());
     }
 
     @Override
