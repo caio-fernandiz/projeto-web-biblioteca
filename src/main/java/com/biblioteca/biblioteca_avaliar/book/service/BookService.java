@@ -13,4 +13,6 @@ public interface BookService {
     BookDTO updateBook(Long id, BookFormUpdateDTO form);
 
     List<BookDTO> showAllBooks();
+
+    BookDTO findBookById(Long id);
 }
