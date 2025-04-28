@@ -41,8 +41,8 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDTO findBookById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findBookById'");
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        return new BookDTO(book);
     }
 
     @Override
