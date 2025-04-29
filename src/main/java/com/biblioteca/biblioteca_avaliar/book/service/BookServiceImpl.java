@@ -59,20 +59,20 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDTO findBookByAuthor(String author) {
-        Book book = bookRepository.findByAuthor(author).orElseThrow(() -> new RuntimeException("Book not found"));
+        Book book = bookRepository.findByAuthor(author).orElseThrow(() -> new RuntimeException("author not found"));
         return new BookDTO(book);
     }
 
     @Override
     public BookDTO findBookByPublisher(String publisher) {
-        Book book = bookRepository.findByPublisher(publisher).orElseThrow(() -> new RuntimeException("Book not found"));
+        Book book = bookRepository.findByPublisher(publisher).orElseThrow(() -> new RuntimeException("Pusblisher not found"));
         return new BookDTO(book);
     }
 
     @Override
     public void deleteBook(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteBook'");
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        bookRepository.delete(book);
     }
 
 
