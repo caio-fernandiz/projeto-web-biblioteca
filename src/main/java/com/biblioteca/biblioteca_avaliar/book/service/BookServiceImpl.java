@@ -65,8 +65,8 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDTO findBookByPublisher(String publisher) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findBookByPublisher'");
+        Book book = bookRepository.findByPublisher(publisher).orElseThrow(() -> new RuntimeException("Book not found"));
+        return new BookDTO(book);
     }
 
     @Override
