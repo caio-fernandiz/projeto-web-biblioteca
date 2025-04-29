@@ -24,6 +24,9 @@ public class BookServiceImpl implements BookService{
     @Override
     public BookDTO saveBook(BookFormDTO form) {
         Book book = form.toEntity();
+        if(bookRepository.existsByIsbn(book.getIsbn())) {
+            throw new RuntimeException("Book with this ISBN already exists");
+        }
         return new BookDTO(bookRepository.save(book));
     }
 
