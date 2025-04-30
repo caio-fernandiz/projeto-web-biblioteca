@@ -10,6 +10,7 @@ import com.biblioteca.biblioteca_avaliar.book.BookRepository;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookDTO;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormDTO;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormUpdateDTO;
+import com.biblioteca.biblioteca_avaliar.book.util.IsbnValidator;
 
 public class BookServiceImpl implements BookService{
     private final BookRepository bookRepository;
@@ -33,6 +34,14 @@ public class BookServiceImpl implements BookService{
     @Override
     public BookDTO updateBook(Long id, BookFormUpdateDTO form) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        if(!form.isbn().equals(book)){
+            if(!IsbnValidator.isValid(form.isbn())){
+                throw new IllegalArgumentException("ISBN is not valid");
+            }
+            if(bookRepository.existsByIsbn(form.isbn())) {
+                throw new RuntimeException("Book with this ISBN already exists");
+            }
+        }
         bookUpdater.updateBook(book, form);
         return new BookDTO(bookRepository.save(book));
     }
