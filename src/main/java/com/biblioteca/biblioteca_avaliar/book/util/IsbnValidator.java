@@ -1,21 +1,14 @@
 package com.biblioteca.biblioteca_avaliar.book.util;
 
 import org.apache.commons.validator.routines.ISBNValidator;
-import org.springframework.stereotype.Component;
 
-@Component
 public class IsbnValidator {
-    
-    private final ISBNValidator isbnValidator;
+    private static final ISBNValidator validator = ISBNValidator.getInstance();
 
-    public IsbnValidator() {
-        this.isbnValidator = ISBNValidator.getInstance();
-    }
-
-    public boolean isValid(String isbn) {
-        if (isbn == null) {
+    public static boolean isValid(String isbn) {
+        if (isbn == null || isbn.trim().isEmpty()) {
             return false;
         }
-        return isbnValidator.isValid(isbn);
+        return validator.isValid(isbn);
     }
 }
