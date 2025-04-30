@@ -4,28 +4,33 @@ import org.springframework.stereotype.Component;
 
 import com.biblioteca.biblioteca_avaliar.book.Book;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormUpdateDTO;
+import com.biblioteca.biblioteca_avaliar.book.util.IsbnValidator;
 
 @Component
 public class BookUpdater {
 
-    public void updateBook(Book book, BookFormUpdateDTO bookFormUpdateDTO) {
-        if (bookFormUpdateDTO.isbn() != null)
-            book.setIsbn(bookFormUpdateDTO.isbn());
+    public void updateBook(Book book, BookFormUpdateDTO form) {
+        if (form.isbn() != null){
+            if(!IsbnValidator.isValid(form.isbn())){
+                throw new IllegalArgumentException("ISBN is not valid");
+            }
+            book.setIsbn(form.isbn());
+        }
 
-        if (bookFormUpdateDTO.title() != null)
-            book.setTitle(bookFormUpdateDTO.title());
+        if (form.title() != null)
+            book.setTitle(form.title());
 
-        if (bookFormUpdateDTO.author() != null)
-            book.setAuthor(bookFormUpdateDTO.author());
+        if (form.author() != null)
+            book.setAuthor(form.author());
 
-        if (bookFormUpdateDTO.synopsis() != null)
-            book.setSynopsis(bookFormUpdateDTO.synopsis());
+        if (form.synopsis() != null)
+            book.setSynopsis(form.synopsis());
 
-        if (bookFormUpdateDTO.releaseDate() != null)
-            book.setReleaseDate(bookFormUpdateDTO.releaseDate());
+        if (form.releaseDate() != null)
+            book.setReleaseDate(form.releaseDate());
 
-        if (bookFormUpdateDTO.publisher() != null)
-            book.setPublisher(bookFormUpdateDTO.publisher());
+        if (form.publisher() != null)
+            book.setPublisher(form.publisher());
 
     }
 
