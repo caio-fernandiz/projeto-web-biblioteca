@@ -32,7 +32,7 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public BookDTO updateBook(Long id, BookFormUpdateDTO form) {
+    public BookDTO updateBookById(Long id, BookFormUpdateDTO form) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
         if(!form.isbn().equals(book)){
             if(!IsbnValidator.isValid(form.isbn())){

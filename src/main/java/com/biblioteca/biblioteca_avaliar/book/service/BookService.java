@@ -10,7 +10,7 @@ public interface BookService {
 
     BookDTO saveBook(BookFormDTO form);
 
-    BookDTO updateBook(Long id, BookFormUpdateDTO form);
+    BookDTO updateBookById(Long id, BookFormUpdateDTO form);
 
     List<BookDTO> showAllBooks();
 
