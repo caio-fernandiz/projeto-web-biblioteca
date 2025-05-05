@@ -47,6 +47,21 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
+    public BookDTO updateBookByIsbn(String isbn, BookFormUpdateDTO form) {
+        Book book = bookRepository.findByIsbn(isbn).orElseThrow(() -> new RuntimeException("Book not found"));
+        if(!form.isbn().equals(book)){
+            if(!IsbnValidator.isValid(form.isbn())){
+                throw new IllegalArgumentException("ISBN is not valid");
+            }
+            if(bookRepository.existsByIsbn(form.isbn())) {
+                throw new RuntimeException("Book with this ISBN already exists");
+            }
+        }
+        bookUpdater.updateBook(book, form);
+        return new BookDTO(bookRepository.save(book));
+    }
+
+    @Override
     public List<BookDTO> showAllBooks() {
         return bookRepository.findAll().stream().map(BookDTO::new).collect(Collectors.toList());
     }
