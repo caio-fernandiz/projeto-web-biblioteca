@@ -11,7 +11,6 @@ public interface BookService {
     BookDTO saveBook(BookFormDTO form);
 
     BookDTO updateBookById(Long id, BookFormUpdateDTO form);
-    BookDTO updateBookByIsbn(String isbn, BookFormUpdateDTO form);
 
     List<BookDTO> showAllBooks();
 
