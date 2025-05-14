@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.biblioteca.biblioteca_avaliar.book.Book;
 import com.biblioteca.biblioteca_avaliar.book.BookRepository;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookDTO;
+import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookDetailsDTO;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormDTO;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormUpdateDTO;
 import com.biblioteca.biblioteca_avaliar.book.util.IsbnValidator;
@@ -52,33 +53,33 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public BookDTO findBookById(Long id) {
+    public BookDetailsDTO findBookById(Long id) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
-        return new BookDTO(book);
+        return new BookDetailsDTO(book);
     }
 
     @Override
-    public BookDTO findBookByIsbn(String isbn) {
+    public BookDetailsDTO findBookByIsbn(String isbn) {
         Book book = bookRepository.findByIsbn(isbn).orElseThrow(() -> new RuntimeException("Book not found"));
-        return new BookDTO(book);
+        return new BookDetailsDTO(book);
     }
 
     @Override
-    public BookDTO findBookByTitle(String title) {
+    public BookDetailsDTO findBookByTitle(String title) {
         Book book = bookRepository.findByTitle(title).orElseThrow(() -> new RuntimeException("Book not found"));
-        return new BookDTO(book);
+        return new BookDetailsDTO(book);
     }
 
     @Override
-    public BookDTO findBookByAuthor(String author) {
+    public BookDetailsDTO findBookByAuthor(String author) {
         Book book = bookRepository.findByAuthor(author).orElseThrow(() -> new RuntimeException("author not found"));
-        return new BookDTO(book);
+        return new BookDetailsDTO(book);
     }
 
     @Override
-    public BookDTO findBookByPublisher(String publisher) {
+    public BookDetailsDTO findBookByPublisher(String publisher) {
         Book book = bookRepository.findByPublisher(publisher).orElseThrow(() -> new RuntimeException("Pusblisher not found"));
-        return new BookDTO(book);
+        return new BookDetailsDTO(book);
     }
 
     @Override
