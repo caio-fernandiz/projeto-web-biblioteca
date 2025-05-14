@@ -22,7 +22,7 @@ import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormUpdateDTO;
 import com.biblioteca.biblioteca_avaliar.book.service.BookService;
 
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.biblioteca.biblioteca_avaliar.book.Book;
 import com.biblioteca.biblioteca_avaliar.book.BookRepository;
@@ -13,6 +14,7 @@ import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormDTO;
 import com.biblioteca.biblioteca_avaliar.book.bookDTO.BookFormUpdateDTO;
 import com.biblioteca.biblioteca_avaliar.book.util.IsbnValidator;
 
+@Service
 public class BookServiceImpl implements BookService{
     private final BookRepository bookRepository;
     private final BookUpdater bookUpdater;
