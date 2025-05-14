@@ -42,7 +42,7 @@ public class BookController {
         return new ResponseEntity<>(bookDTO, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/id/{id}")
     public ResponseEntity<BookDTO> updateBookById(@PathVariable Long id, @RequestBody BookFormUpdateDTO updateForm){
         BookDTO updateBookById = bookService.updateBookById(id, updateForm);
         return ResponseEntity.ok(updateBookById);
@@ -54,9 +54,34 @@ public class BookController {
         return new  ResponseEntity<>(allBooks, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<BookDetailsDTO> findBookById(@PathVariable Long id)  {
         BookDetailsDTO bookById =  bookService.findBookById(id);
+        return new ResponseEntity<>(bookById, HttpStatus.OK);
+    }
+
+    @GetMapping("/isbn/{isbn}")
+    public ResponseEntity<BookDetailsDTO> findBookByIsbn(@PathVariable String isbn){
+        BookDetailsDTO bookByIsbn = bookService.findBookByIsbn(isbn);
+        return new ResponseEntity<>(bookByIsbn, HttpStatus.OK);
     }
     
+    @GetMapping("/tile/{title}")
+    public ResponseEntity<BookDetailsDTO> findBookByTile(@PathVariable String title){
+        BookDetailsDTO bookByTitle = bookService.findBookByTitle(title);
+        return new ResponseEntity<>(bookByTitle, HttpStatus.OK);
+    }
+    
+    @GetMapping("/author/{author}")
+    public ResponseEntity<BookDetailsDTO> findBookByAuthor(@PathVariable String author){
+        BookDetailsDTO bookByAuthor = bookService.findBookByAuthor(author);
+        return new ResponseEntity<>(bookByAuthor, HttpStatus.OK);
+    }
+
+    @GetMapping("/publisher/{publisher}")
+    public ResponseEntity<BookDetailsDTO> findBookByPublisher(@PathVariable String publisher){
+        BookDetailsDTO bookByPublisher = bookService.findBookByPublisher(publisher);
+        return new ResponseEntity<>(bookByPublisher, HttpStatus.OK);
+    }
+
 }
